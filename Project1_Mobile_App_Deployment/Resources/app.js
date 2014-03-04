@@ -1,3 +1,7 @@
+// Robert Brooks
+// AVF 1403
+// Project 1
+
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Titanium.UI.setBackgroundColor('#000');
 
@@ -52,13 +56,15 @@ var label2 = Titanium.UI.createLabel({
 win2.add(label2);
 
 
-
+var ui = require('ui');
 //
 //  add tabs
 //
-tabGroup.addTab(tab1);  
-tabGroup.addTab(tab2);  
+//tabGroup.addTab(tab1);  
+//tabGroup.addTab(tab2);  
 
 
 // open tab group
-tabGroup.open();
+//tabGroup.open();
+
+win1.open();

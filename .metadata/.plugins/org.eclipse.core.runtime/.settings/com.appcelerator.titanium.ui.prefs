@@ -1,7 +1,7 @@
 =run
-LAST_LAUNCH_TIMESTAMP=1393867985901
+LAST_LAUNCH_TIMESTAMP=1393879022491
 Project1_Mobile_App_Deployment\:launchMode=run
-Project1_Mobile_App_Deployment\:launchShortcut=com.appcelerator.titanium.mobile.ui.android.device.launchShortcut
+Project1_Mobile_App_Deployment\:launchShortcut=com.appcelerator.titanium.mobile.ui.ios.simulator.ipad.launchShortcut.iPad Retina (64-bit)
 eclipse.preferences.version=1
 preference.show.console.onError=true
 preference.studio.perspective.version=103

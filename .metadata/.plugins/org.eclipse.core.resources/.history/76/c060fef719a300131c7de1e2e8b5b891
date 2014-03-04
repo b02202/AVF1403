@@ -1,0 +1,25 @@
+// Robert Brooks
+// AVF 1403
+// Project 1
+
+var container = Ti.UI.createView ({
+	height: '100%',
+	width: '100%',
+	backgroundColor: '#000'
+});
+
+var logo = Ti.UI.createImageView({
+	image: 'logo.png',
+	bottom: '60%'
+});
+
+var headline = Ti.UI.createLabel({
+	text: "Client Accountability App",
+	font: {fontSize: 15, fontFamily: "Arial"},
+	color: '#fff',
+	top: '40%'
+});
+
+
+container.add(logo, headline);
+win1.add(container);

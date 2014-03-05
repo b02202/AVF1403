@@ -1,8 +1,8 @@
-#appname: Project1_Mobile_App_Deployment
-#publisher: robertbrooks
-#url: http://fullsail.edu
-#image: appicon.png
-#appid: com.fulsail.edu
-#desc: undefined
-#type: ipad
-#guid: bd2a20a6-fcdb-4ba8-9126-2171b1664f1e
+#appname:Project1_Mobile_App_Deployment
+#publisher:robertbrooks
+#url:http://fullsail.edu
+#image:appicon.png
+#appid:com.fullsail.Project1
+#desc:not specified
+#type:ipad
+#guid:bd2a20a6-fcdb-4ba8-9126-2171b1664f1e

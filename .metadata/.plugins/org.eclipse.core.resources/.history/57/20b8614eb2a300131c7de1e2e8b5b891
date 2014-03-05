@@ -3,10 +3,10 @@
 // Project 1
 
 var container = Ti.UI.createView ({
-	height: '100%',
-	width: '100%',
-	//backgroundColor: '#000',
-	//backgroundImage: 'bg.png'
+	//height: '100%',
+	//width: '100%',
+	backgroundColor: '#000',
+	backgroundImage: 'bg.png'
 	
 });
 
@@ -27,7 +27,6 @@ var headline = Ti.UI.createLabel({
 	color: '#fff',
 	backgroundColor: '#b5b7b9',
 	borderColor: '#fff',
-	borderWidth: 1,
 	width: '50%',
 	height: 75,
 	bottom: 0,
@@ -42,7 +41,6 @@ var exButton = Ti.UI.createButton({
 	color: '#fff',
 	backgroundColor: '#b5b7b9',
 	borderColor: '#fff',
-	borderWidth: 1,
 	width: '50%',
 	height: 75,
 	bottom: 0,
@@ -61,9 +59,8 @@ var formView = Ti.UI.createView({
 	//borderRadius: 20,
 	//borderColor: "#fff",
 	top: '30%',
-	left: '10%',
-	right: '10%',
-	//height: 200,
+	left: '20%',
+	right: '20%',
 	//bottom: '50',
 	visible: true
 });
@@ -152,80 +149,11 @@ submitButton.addEventListener('click', function(){
 		welcomeLabel.visible = true;
 		name = emailTxt.value;
 		welcomeLabel.text = 'Welcome ' + name + '!' + '\n' + 'Please Choose Nutrition or Exercise Below.';
-		
-		// hide keyboard
-		emailTxt.blur();
-		passTxt.blur();
 	}
 	
 });
-var nutWin = Ti.UI.createWindow({
-	title:'Nutrition',
-    backgroundColor: '#000',
-	backgroundImage: 'bg.png'
-	
-});
-var exWin = Ti.UI.createWindow({
-	title:'Nutrition',
-    backgroundColor: '#000',
-	backgroundImage: 'bg.png'
-	
-});
-var label1 = Ti.UI.createLabel({
-	text: '1',
-	color: 'fff'
-});
-var label2 = Ti.UI.createLabel({
-	text: '2',
-	color: 'fff'
-});
-var exClose = Ti.UI.createButton({
-	title: 'Close',
-	font: {fontSize: 25, fontFamily: "Arial"},
-	color: '#fff',
-	backgroundColor: '#b5b7b9',
-	borderColor: '#fff',
-	borderWidth: 1,
-	width: '100%',
-	height: 75,
-	bottom: 0,
-	right: 0,
-	enabled: true
-    //disabledColor: '#b5b7b9'
-});
-var nutClose = Ti.UI.createButton({
-	title: 'Close',
-	font: {fontSize: 25, fontFamily: "Arial"},
-	color: '#fff',
-	backgroundColor: '#b5b7b9',
-	borderColor: '#fff',
-	borderWidth: 1,
-	width: '100%',
-	height: 75,
-	bottom: 0,
-	right: 0,
-	enabled: true
-    //disabledColor: '#b5b7b9'
-});
-nutClose.addEventListener('click', function(){
-	nutWin.close();
-});
 
-exClose.addEventListener('click', function(){
-	exWin.close();
-});
-nutWin.add(label1);
-exWin.add(label2);
-exWin.add(exClose);
-nutWin.add(nutClose);
 
-nutButton.addEventListener('click', function(){
-	nutWin.open();
-});
-
-exButton.addEventListener('click', function(){
-	exWin.open();
-});
 
 
 
@@ -239,9 +167,7 @@ container.add(logo);
 container.add(headline);
 container.add(welcomeLabel);
 container.add(formView);
-//container.add(nutButton);
-//container.add(exButton);
+container.add(nutButton);
+container.add(exButton);
 //, headline, welcomeLabel, formView, nutButton, exButton);
 win1.add(container);
-win1.add(nutButton);
-win1.add(exButton);

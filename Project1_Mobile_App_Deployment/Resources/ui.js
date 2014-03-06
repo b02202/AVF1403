@@ -1,6 +1,7 @@
 // Robert Brooks
 // AVF 1403
 // Project 1
+// ui.js
 
 var container = Ti.UI.createView ({
 	height: '100%',
@@ -133,7 +134,6 @@ var submitButton = Ti.UI.createButton({
 });
 var name;
 var welcomeLabel = Ti.UI.createLabel({
-	//text: 'Welcome ' + name + '!' + '\n' + 'Please Choose Nutrition or Exercise Below.',
 	font: {fontSize: 30, fontFamily: "Arial"},
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 	color: '#fff',
@@ -227,21 +227,15 @@ exButton.addEventListener('click', function(){
 	exWin.open();
 });
 
-
-
 formView.add(emailTxt);
 formView.add(passTxt);
 formView.add(createLogin);
 formView.add(forgotLogin);
 formView.add(submitButton);
-//, passTxt, createLogin, forgotLogin, submitButton);
 container.add(logo);
 container.add(headline);
 container.add(welcomeLabel);
 container.add(formView);
-//container.add(nutButton);
-//container.add(exButton);
-//, headline, welcomeLabel, formView, nutButton, exButton);
 win1.add(container);
 win1.add(nutButton);
 win1.add(exButton);

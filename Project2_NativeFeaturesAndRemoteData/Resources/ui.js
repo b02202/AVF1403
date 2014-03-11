@@ -17,14 +17,14 @@ var logo = Ti.UI.createImageView({
 	bottom: '75%'
 });
 var headline = Ti.UI.createLabel({
-	text: "Client Accountability App",
+	text: "Please Login to Begin",
 	font: {fontSize: 25, fontFamily: "Arial"},
 	color: '#fff',
 	top: '25%'
 });
 
  nutButton = Ti.UI.createButton({
-	title: 'NUTRITION',
+	title: 'TOP NEWS',
 	font: {fontSize: 25, fontFamily: "Arial"},
 	color: '#fff',
 	backgroundColor: '#b5b7b9',
@@ -39,7 +39,7 @@ var headline = Ti.UI.createLabel({
 });
 
 var exButton = Ti.UI.createButton({
-	title: 'EXERCISE',
+	title: 'FAVORITES',
 	font: {fontSize: 25, fontFamily: "Arial"},
 	color: '#fff',
 	backgroundColor: '#b5b7b9',

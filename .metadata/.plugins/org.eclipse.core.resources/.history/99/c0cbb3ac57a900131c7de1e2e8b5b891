@@ -3,8 +3,6 @@
 // Project 2 Native Features and Remote Data
 // ui.js
 
-// Bring in remote data from  remote.js
-var remote = require('remote');
 
 var container = Ti.UI.createView ({
 	height: '100%',
@@ -25,7 +23,7 @@ var headline = Ti.UI.createLabel({
 	top: '25%'
 });
 
- newsButton = Ti.UI.createButton({
+ nutButton = Ti.UI.createButton({
 	title: 'TOP NEWS',
 	font: {fontSize: 25, fontFamily: "Arial"},
 	color: '#fff',
@@ -40,7 +38,7 @@ var headline = Ti.UI.createLabel({
     //disabledColor: '#b5b7b9'
 });
 
-var favButton = Ti.UI.createButton({
+var exButton = Ti.UI.createButton({
 	title: 'FAVORITES',
 	font: {fontSize: 25, fontFamily: "Arial"},
 	color: '#fff',
@@ -147,14 +145,14 @@ submitButton.addEventListener('click', function(){
 	if (emailTxt.value == '' || passTxt.value == ''){
 		alert('Please enter a username and password.');
 	} else{
-		favButton.enabled = true;
-		favButton.backgroundColor = '#0099ff';
-		newsButton.enabled = true;
-		newsButton.backgroundColor = '#0099ff';
+		exButton.enabled = true;
+		exButton.backgroundColor = '#0099ff';
+		nutButton.enabled = true;
+		nutButton.backgroundColor = '#0099ff';
 		formView.visible = false;
 		welcomeLabel.visible = true;
 		name = emailTxt.value;
-		welcomeLabel.text = 'Welcome ' + name + '!' + '\n' + 'Please Choose Top News or Favorites Below.';
+		welcomeLabel.text = 'Welcome ' + name + '!' + '\n' + 'Please Choose Nutrition or Exercise Below.';
 		
 		// hide keyboard
 		emailTxt.blur();
@@ -162,13 +160,13 @@ submitButton.addEventListener('click', function(){
 	}
 	
 });
-var newsWin = Ti.UI.createWindow({
+var nutWin = Ti.UI.createWindow({
 	title:'Nutrition',
     backgroundColor: '#000',
 	backgroundImage: 'bg.png'
 	
 });
-var favWin = Ti.UI.createWindow({
+var exWin = Ti.UI.createWindow({
 	title:'Nutrition',
     backgroundColor: '#000',
 	backgroundImage: 'bg.png'
@@ -182,7 +180,7 @@ var label2 = Ti.UI.createLabel({
 	text: '2',
 	color: 'fff'
 });
-var favClose = Ti.UI.createButton({
+var exClose = Ti.UI.createButton({
 	title: 'Close',
 	font: {fontSize: 25, fontFamily: "Arial"},
 	color: '#fff',
@@ -196,7 +194,7 @@ var favClose = Ti.UI.createButton({
 	enabled: true
     //disabledColor: '#b5b7b9'
 });
-var newsClose = Ti.UI.createButton({
+var nutClose = Ti.UI.createButton({
 	title: 'Close',
 	font: {fontSize: 25, fontFamily: "Arial"},
 	color: '#fff',
@@ -210,24 +208,24 @@ var newsClose = Ti.UI.createButton({
 	enabled: true
     //disabledColor: '#b5b7b9'
 });
-newsClose.addEventListener('click', function(){
+nutClose.addEventListener('click', function(){
 	nutWin.close();
 });
 
-favClose.addEventListener('click', function(){
-	newsWin.close();
+exClose.addEventListener('click', function(){
+	exWin.close();
 });
-newsWin.add(label1);
-favWin.add(label2);
-favWin.add(favClose);
-newsWin.add(newsClose);
+nutWin.add(label1);
+exWin.add(label2);
+exWin.add(exClose);
+nutWin.add(nutClose);
 
-newsButton.addEventListener('click', function(){
-	newsWin.open();
+nutButton.addEventListener('click', function(){
+	nutWin.open();
 });
 
-favButton.addEventListener('click', function(){
-	favWin.open();
+exButton.addEventListener('click', function(){
+	exWin.open();
 });
 
 formView.add(emailTxt);
@@ -240,5 +238,5 @@ container.add(headline);
 container.add(welcomeLabel);
 container.add(formView);
 win1.add(container);
-win1.add(newsButton);
-win1.add(favButton);
+win1.add(nutButton);
+win1.add(exButton);

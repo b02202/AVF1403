@@ -3,8 +3,6 @@
 // Project 2 Native Features and Remote Data
 // ui.js
 
-// Bring in remote data from  remote.js
-var remote = require('remote');
 
 var container = Ti.UI.createView ({
 	height: '100%',
@@ -25,7 +23,7 @@ var headline = Ti.UI.createLabel({
 	top: '25%'
 });
 
- newsButton = Ti.UI.createButton({
+ nutButton = Ti.UI.createButton({
 	title: 'TOP NEWS',
 	font: {fontSize: 25, fontFamily: "Arial"},
 	color: '#fff',
@@ -40,7 +38,7 @@ var headline = Ti.UI.createLabel({
     //disabledColor: '#b5b7b9'
 });
 
-var favButton = Ti.UI.createButton({
+var exButton = Ti.UI.createButton({
 	title: 'FAVORITES',
 	font: {fontSize: 25, fontFamily: "Arial"},
 	color: '#fff',
@@ -147,10 +145,10 @@ submitButton.addEventListener('click', function(){
 	if (emailTxt.value == '' || passTxt.value == ''){
 		alert('Please enter a username and password.');
 	} else{
-		favButton.enabled = true;
-		favButton.backgroundColor = '#0099ff';
-		newsButton.enabled = true;
-		newsButton.backgroundColor = '#0099ff';
+		exButton.enabled = true;
+		exButton.backgroundColor = '#0099ff';
+		nutButton.enabled = true;
+		nutButton.backgroundColor = '#0099ff';
 		formView.visible = false;
 		welcomeLabel.visible = true;
 		name = emailTxt.value;
@@ -219,8 +217,8 @@ favClose.addEventListener('click', function(){
 });
 newsWin.add(label1);
 favWin.add(label2);
-favWin.add(favClose);
-newsWin.add(newsClose);
+favWin.add(exClose);
+newsWin.add(nutClose);
 
 newsButton.addEventListener('click', function(){
 	newsWin.open();

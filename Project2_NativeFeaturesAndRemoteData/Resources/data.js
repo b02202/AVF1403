@@ -34,6 +34,7 @@ var remoteResponse = function() {
 		var rowText = Ti.UI.createLabel({
 			text: theRow.rowTitle,
 			font: {fontSize: 15, fontFamily: "Arial"},
+			color: '#000',
 			textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
 			bottom: 20,
 			left: 5,
@@ -51,7 +52,8 @@ var remoteResponse = function() {
 			left: 5
 		});
 		
-		theRow.add(rowText, rowSubText);
+		theRow.add(rowText);
+		theRow.add(rowSubText);
 		tableSection.add(theRow);
 	}
 	mySections.push(tableSection);

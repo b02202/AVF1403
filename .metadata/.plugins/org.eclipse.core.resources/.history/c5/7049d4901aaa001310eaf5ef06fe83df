@@ -18,9 +18,7 @@ openDB();
 var tableView = Titanium.UI.createTableView({
 	//data: data,
 	editable: true,
-	top: 20,
-	bottom: 75
-	//height: '90%'
+	height: '90%'
 	//height: 'auto'
 });
 
@@ -29,10 +27,7 @@ var tableData = getRowData();
 tableView.setData(tableData);
 
 // add form components to edit
-editView.add(editDate);
-editView.add(editTitle);
-editView.add(saveButton);
-editView.add(cancelButton);
+editView.add(editDate, editTitle, saveButton, cancelButton);
 
 
 // *** Begin Web Window ***
@@ -44,9 +39,8 @@ var webWin =Ti.UI.createWindow({
 });
 // WebView takes user to news story url
 var webView = Titanium.UI.createWebView({
-	//height: '90%',
-	top: 20,
-	bottom:75
+	height: '90%',
+	top: 0
 });
 
 // Back button for webview
@@ -57,13 +51,11 @@ var backBtn = Ti.UI.createButton({
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 	backgroundColor: '#0099ff',
 	bottom: 0,
-	height: 75,
+	height: '10%',
 	width: '100%'
 });
 
-webWin.add(webView);
-webWin.add(backBtn);
-
+webWin.add(webView, backBtn);
 // *** End Web Window ***
 
 var container = Ti.UI.createView ({
@@ -152,102 +144,12 @@ table1.addEventListener('click', function(e){
 			tableView.setData(data);
 		
 		// success alert
-			alert('This story has benn added to your favorites.');			
+			alert('Your information has been saved');			
 		}
 	});	
 	dialog.show();	
 });
 
-
-// *** Begin  Edit ***
-var editOptions = {
-	title: 'Edit or delete user info',
-	options: ['Edit', 'Delete', 'Cancel'],
-	cancel: 2,
-	selectedIndex: 2,
-	destructive: 1
-};
-var editWin = Ti.UI.createWindow({
-			title: "Edit",
-			modal: true,
-			backgroundColor: '#fff'
-			});
-   
-
-tableView.addEventListener('click', function(e){
-// Get rowData stored in row
-	var id = e.rowData.id;
-	
-	var currentRow = db.execute('SELECT * FROM fav WHERE ID=?', id);
-	
-	var rowData = {};
-	rowData.id = currentRow.fieldByName('id');
-	rowData.date = currentRow.fieldByName('date');
-	rowData.title = currentRow.fieldByName('title');
-
-	
-//add options
-	var editDialog = Ti.UI.createOptionDialog(editOptions);
-    
-
-
-// dialog event listener
-	 editDialog.addEventListener('click', function(e){
-		editDate.value = rowData.date;
-		editTitle.value = rowData.title;
-		if(e.index === 0) {
-			
-			editWin.add(editView);
-			editWin.open();
-			var save = function(){
-				if (editDate.value == '' && editTitle.value == '') {
-					alert('Please enter all required fields.');
-				} else {
-					var favEdit = {};
-					favEdit.date = editDate.value;
-					favEdit.title = editTitle.value;
-							
-				//set db data
-				db.execute('UPDATE fav SET date=?, title=? WHERE id=?',favEdit.date, favEdit.title, id);
-		
-				// update into db
-				data = getRowData();
-				tableView.setData(data);
-		
-				//Clear form fields with success
-				editDate.value = '';
-				editTitle.value = '';
-		
-		//Hide Keyboard
-				editDate.blur();
-				editTitle.blur();
-		
-		//Remove Event Listener from save button
-				saveButton.removeEventListener('click', save);
-				editWin.close();
-				alert('Info updated.');
-	}		
-};
-saveButton.addEventListener('click', save);
-
-// Cancel Function
-var cancel = function(){
-	cancelButton.removeEventListener('click', cancel);
-	editWin.close();
-};
-cancelButton.addEventListener('click', cancel);
-		} else if (e.index === 1) {
-			db.execute('DELETE FROM fav WHERE id=?', id);
-			data = getRowData();
-			tableView.setData(data);
-
-alert('This item has been deleted.');
-		}	
-	});
-	editDialog.show();
-});
-
-// *** End Edit ***
 
 // *** Begin Login Form ***
 // Form Layout

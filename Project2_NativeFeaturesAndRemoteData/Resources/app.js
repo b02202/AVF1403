@@ -5,6 +5,12 @@
 
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Titanium.UI.setBackgroundColor('#000');
+// Table for remote data
+var table1 = Ti.UI.createTableView({
+	//height: '90%',
+	top: 20,
+	bottom: 75
+});
 
 var win1 = Titanium.UI.createWindow({  
     title:'Project 1',

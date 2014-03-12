@@ -4,11 +4,63 @@
 // ui.js
 
 // Bring in remote data from  remote.js
-var remote = require('remote');
+var remote = require('data');
+
+// include sql db from database.js
+Ti.include('database.js');
+
+// include Edit-Form Componenets from form.js
+Ti.include('form.js');
+
+// call create / open DB function
+openDB();
+// table for SQL DB
+var tableView = Titanium.UI.createTableView({
+	//data: data,
+	editable: true,
+	height: '90%'
+	//height: 'auto'
+});
+
+// call getRowData Function
+var tableData = getRowData();
+tableView.setData(tableData);
+
+// add form components to edit
+editView.add(editDate, editTitle, saveButton, cancelButton);
+
+
+// *** Begin Web Window ***
+// window for webView
+var webWin =Ti.UI.createWindow({
+	tabBarHidden: true,
+	//title: "Project 4",
+	backgroundColor: "#fff"
+});
+// WebView takes user to news story url
+var webView = Titanium.UI.createWebView({
+	height: '90%',
+	top: 0
+});
+
+// Back button for webview
+var backBtn = Ti.UI.createButton({
+	title: 'Back',
+	color: '#fff',
+	font: {fontSize: 25, fontFamily: "Helvetica"},
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	backgroundColor: '#0099ff',
+	bottom: 0,
+	height: '10%',
+	width: '100%'
+});
+
+webWin.add(webView, backBtn);
+// *** End Web Window ***
 
 var container = Ti.UI.createView ({
 	height: '100%',
-	width: '100%',
+	width: '100%'
 	//backgroundColor: '#000',
 	//backgroundImage: 'bg.png'
 	
@@ -25,7 +77,7 @@ var headline = Ti.UI.createLabel({
 	top: '25%'
 });
 
- newsButton = Ti.UI.createButton({
+ var newsButton = Ti.UI.createButton({
 	title: 'TOP NEWS',
 	font: {fontSize: 25, fontFamily: "Arial"},
 	color: '#fff',
@@ -55,6 +107,48 @@ var favButton = Ti.UI.createButton({
     //disabledColor: '#b5b7b9'
 });
 
+// favorite funciton
+var favOptions = {
+	title: 'View or add to Favorites?',
+	options: ['View', '+ Favorites', 'Cancel'],
+	cancel: 2,
+	selectedIndex: 2,
+	destructive: 1
+};
+table1.addEventListener('click', function(e){
+	var utc = e.source.date;
+	var d = new Date(utc * 1000);
+	var day = d.getUTCDate();
+	var month = d.getUTCMonth() + 1;
+	var year = d.getUTCFullYear();
+	var simpleDate = month + '/' + day + '/' + year;
+		
+	var favInfo = {};
+		favInfo.date = simpleDate;
+		favInfo.title = e.source.text;
+		favInfo.url = e.source.url;
+		
+	var dialog = Ti.UI.createOptionDialog(favOptions);
+	
+	dialog.addEventListener('click', function(e){
+		if(e.index === 0) {
+			webView.url = favInfo.url;
+			webWin.open();
+			backBtn.addEventListener('click', function(){
+				webWin.close();
+			});
+			
+		} else if (e.index === 1 ) {			
+			db.execute('INSERT INTO fav (date, title) VALUES(?,?)', favInfo.date, favInfo.title );
+			var data = getRowData();
+			tableView.setData(data);
+		
+		// success alert
+			alert('Your information has been saved');			
+		}
+	});	
+	dialog.show();	
+});
 
 
 
@@ -163,30 +257,23 @@ submitButton.addEventListener('click', function(){
 	
 });
 var newsWin = Ti.UI.createWindow({
-	title:'Nutrition',
-    backgroundColor: '#000',
-	backgroundImage: 'bg.png'
+	title:'Top News',
+    backgroundColor: '#fff'
+	//backgroundImage: 'bg.png'
 	
 });
 var favWin = Ti.UI.createWindow({
-	title:'Nutrition',
+	title:'Favorites',
     backgroundColor: '#000',
 	backgroundImage: 'bg.png'
 	
 });
-var label1 = Ti.UI.createLabel({
-	text: '1',
-	color: 'fff'
-});
-var label2 = Ti.UI.createLabel({
-	text: '2',
-	color: 'fff'
-});
+
 var favClose = Ti.UI.createButton({
 	title: 'Close',
 	font: {fontSize: 25, fontFamily: "Arial"},
 	color: '#fff',
-	backgroundColor: '#b5b7b9',
+	backgroundColor: '#0099ff',
 	borderColor: '#fff',
 	borderWidth: 1,
 	width: '100%',
@@ -200,7 +287,7 @@ var newsClose = Ti.UI.createButton({
 	title: 'Close',
 	font: {fontSize: 25, fontFamily: "Arial"},
 	color: '#fff',
-	backgroundColor: '#b5b7b9',
+	backgroundColor: '#0099ff',
 	borderColor: '#fff',
 	borderWidth: 1,
 	width: '100%',
@@ -211,14 +298,15 @@ var newsClose = Ti.UI.createButton({
     //disabledColor: '#b5b7b9'
 });
 newsClose.addEventListener('click', function(){
-	nutWin.close();
+	newsWin.close();
 });
 
 favClose.addEventListener('click', function(){
-	newsWin.close();
+	favWin.close();
 });
-newsWin.add(label1);
-favWin.add(label2);
+//newsWin.add(label1);
+favWin.add(tableView);
+//favWin.add(label2);
 favWin.add(favClose);
 newsWin.add(newsClose);
 
@@ -230,6 +318,7 @@ favButton.addEventListener('click', function(){
 	favWin.open();
 });
 
+newsWin.add(table1);
 formView.add(emailTxt);
 formView.add(passTxt);
 formView.add(createLogin);

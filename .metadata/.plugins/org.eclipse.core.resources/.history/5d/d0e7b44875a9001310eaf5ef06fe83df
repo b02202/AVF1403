@@ -2,7 +2,10 @@
 // AVF 1403
 // Project 2 Native Features and Remote Data
 // data.js
-
+var table1 = Ti.UI.createTableView({
+	height: '90%',
+	top: 0
+});
 
 var URL = "http://api.reddit.com/r/news/top";
 var json;

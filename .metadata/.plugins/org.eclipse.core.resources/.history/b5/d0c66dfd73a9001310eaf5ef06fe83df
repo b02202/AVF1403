@@ -3,7 +3,6 @@
 // Project 2 Native Features and Remote Data
 // data.js
 
-
 var URL = "http://api.reddit.com/r/news/top";
 var json;
 var testTitle;

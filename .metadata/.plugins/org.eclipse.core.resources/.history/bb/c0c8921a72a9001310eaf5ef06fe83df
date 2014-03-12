@@ -3,7 +3,6 @@
 // Project 2 Native Features and Remote Data
 // data.js
 
-
 var URL = "http://api.reddit.com/r/news/top";
 var json;
 var testTitle;
@@ -73,7 +72,7 @@ var xhr = Ti.Network.createHTTPClient({
     onerror: remoteError,
     timeout: 5000
 });
-//var req = require('ui');
+var req = require('ui');
 
 xhr.open("GET", URL);
 xhr.send();

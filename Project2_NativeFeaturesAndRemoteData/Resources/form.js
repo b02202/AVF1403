@@ -1,6 +1,7 @@
-
-
-
+// Robert Brooks
+// AVF 1403
+// Project 2 Native Features and Remote Data
+// form.js
 
 // form Container
 var editView = Ti.UI.createScrollView({

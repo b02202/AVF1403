@@ -12,6 +12,9 @@ Ti.include('database.js');
 // include Edit-Form Componenets from form.js
 Ti.include('form.js');
 
+Ti.include('camera.js');
+Ti.include('geo.js');
+
 // call create / open DB function
 openDB();
 // table for SQL DB
@@ -85,14 +88,14 @@ var headline = Ti.UI.createLabel({
 	top: '25%'
 });
 
- var newsButton = Ti.UI.createButton({
+var newsButton = Ti.UI.createButton({
 	title: 'TOP NEWS',
 	font: {fontSize: 25, fontFamily: "Arial"},
 	color: '#fff',
 	backgroundColor: '#b5b7b9',
 	borderColor: '#fff',
 	borderWidth: 1,
-	width: '50%',
+	width: '25%',
 	height: 75,
 	bottom: 0,
 	left: 0,
@@ -107,10 +110,10 @@ var favButton = Ti.UI.createButton({
 	backgroundColor: '#b5b7b9',
 	borderColor: '#fff',
 	borderWidth: 1,
-	width: '50%',
+	width: '25%',
 	height: 75,
 	bottom: 0,
-	right: 0,
+	left: '25%',
 	enabled: false
     //disabledColor: '#b5b7b9'
 });
@@ -152,7 +155,7 @@ table1.addEventListener('click', function(e){
 			tableView.setData(data);
 		
 		// success alert
-			alert('This story has benn added to your favorites.');			
+			alert('This story has been added to your favorites.');			
 		}
 	});	
 	dialog.show();	
@@ -343,6 +346,10 @@ submitButton.addEventListener('click', function(){
 		favButton.backgroundColor = '#0099ff';
 		newsButton.enabled = true;
 		newsButton.backgroundColor = '#0099ff';
+		picBtn.enabled = true;
+		picBtn.backgroundColor = '#0099ff';
+		storyBtn.enabled = true,
+		storyBtn.backgroundColor = '#0099ff';
 		formView.visible = false;
 		welcomeLabel.visible = true;
 		name = emailTxt.value;
@@ -416,6 +423,9 @@ favButton.addEventListener('click', function(){
 	favWin.open();
 });
 
+
+
+
 newsWin.add(table1);
 formView.add(emailTxt);
 formView.add(passTxt);
@@ -429,3 +439,5 @@ container.add(formView);
 win1.add(container);
 win1.add(newsButton);
 win1.add(favButton);
+//win1.add(picBtn);
+win1.add(storyBtn);

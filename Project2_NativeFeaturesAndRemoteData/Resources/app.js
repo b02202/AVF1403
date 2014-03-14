@@ -13,7 +13,7 @@ var table1 = Ti.UI.createTableView({
 });
 
 var win1 = Titanium.UI.createWindow({  
-    title:'Project 1',
+    title:'Project 2',
     backgroundColor: '#000',
 	backgroundImage: 'bg.png'
 });

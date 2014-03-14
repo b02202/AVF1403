@@ -1,0 +1,19 @@
+// Robert Brooks
+// AVF 1403
+// Project 2 Native Features and Remote Data
+// geo.js
+
+var locBtn = Ti.UI.createButton({
+	title: 'LOCATION',
+	font: {fontSize: 25, fontFamily: "Arial"},
+	color: '#fff',
+	backgroundColor: '#b5b7b9',
+	borderColor: '#fff',
+	borderWidth: 1,
+	width: '25%',
+	height: 75,
+	bottom: 0,
+	right: 0,
+	enabled: false
+	
+});

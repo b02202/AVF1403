@@ -2,7 +2,6 @@
 // AVF 1403
 // Project 2 Native Features and Remote Data
 // camera.js
-
 Ti.include('geo.js');
 var dataFile;
 Ti.Geolocation.addEventListener('location', runGeo);

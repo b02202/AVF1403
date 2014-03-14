@@ -271,7 +271,7 @@ var formView = Ti.UI.createView({
 var fieldHeight = 50;
 var emailTxt = Ti.UI.createTextField({
 	  borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-	  color: '#fff',
+	  color: '#000',
 	  top: 10,
 	  left: 0,
 	  right: 0, 
@@ -281,7 +281,7 @@ var emailTxt = Ti.UI.createTextField({
 });
 var passTxt = Ti.UI.createTextField({
 	  borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-	  color: '#fff',
+	  color: '#000',
 	  font: {fontSize: 15, fontFamily: "Arial"},
 	  top: emailTxt.top + 60,
 	  left: 0,

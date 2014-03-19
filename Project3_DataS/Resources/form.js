@@ -18,6 +18,7 @@ var formView = Ti.UI.createView({
 var fieldHeight = 50;
 var emailTxt = Ti.UI.createTextField({
 	  borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	  backgroundColor: '#fff',
 	  color: '#000',
 	  top: 10,
 	  left: 0,
@@ -28,6 +29,7 @@ var emailTxt = Ti.UI.createTextField({
 });
 var passTxt = Ti.UI.createTextField({
 	  borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	  backgroundColor: '#fff',
 	  color: '#000',
 	  font: {fontSize: 15, fontFamily: "Arial"},
 	  top: emailTxt.top + 60,
@@ -81,6 +83,7 @@ var formView2 = Ti.UI.createView({
 var fieldHeight = 50;
 var emailTxt2 = Ti.UI.createTextField({
 	  borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	  backgroundColor: '#fff',
 	  color: '#000',
 	  top: 10,
 	  left: 0,
@@ -91,6 +94,7 @@ var emailTxt2 = Ti.UI.createTextField({
 });
 var passTxt2 = Ti.UI.createTextField({
 	  borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	  backgroundColor: '#fff',
 	  color: '#000',
 	  font: {fontSize: 15, fontFamily: "Arial"},
 	  top: emailTxt2.top + 60,
@@ -101,6 +105,7 @@ var passTxt2 = Ti.UI.createTextField({
 });
 var firstTxt = Ti.UI.createTextField({
 	  borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	  backgroundColor: '#fff',
 	  color: '#000',
 	  top: passTxt2.top + 60,
 	  left: 0,
@@ -111,6 +116,7 @@ var firstTxt = Ti.UI.createTextField({
 });
 var lastTxt = Ti.UI.createTextField({
 	  borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	  backgroundColor: '#fff',
 	  color: '#000',
 	  top: firstTxt.top + 60,
 	  left: 0,

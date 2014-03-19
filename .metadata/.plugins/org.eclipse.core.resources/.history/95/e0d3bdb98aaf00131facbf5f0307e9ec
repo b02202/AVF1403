@@ -29,13 +29,7 @@ var welcomeLabel = Ti.UI.createLabel({
 	color: '#fff',
 	visible: false
 }); 
-
-var welcomeLabel2 = Ti.UI.createLabel({
-	font: {fontSize: 30, fontFamily: "Arial"},
-	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-	color: '#fff',
-	visible: false
-});
+//var user = require('user');
 
 var userForm =Ti.UI.createWindow({
 	tabBarHidden: true,
@@ -74,10 +68,6 @@ submitButton.addEventListener('click', function(){
 					'ACS User ID: ' + user.id + '\n' + 
 					'ACS App sessionId: ' + Cloud.sessionId + '\n' + 
 					'ACS App Username: ' + user.username);
-					formView.visible = false;
-					welcomeLabel.visible = true;
-					name = user.first_name;
-					welcomeLabel.text = 'Welcome ' + name + '!'; //+ '\n' + 'Please Choose Top News or Favorites Below.';
 			} else {
 				alert((e.error && e.message) || JSON.stringify(e));
 			}
@@ -88,9 +78,10 @@ submitButton.addEventListener('click', function(){
 })();
 
 
-		
-		//name = emailTxt.value;
-		
+		formView.visible = false;
+		welcomeLabel.visible = true;
+		name = emailTxt.value;
+		welcomeLabel.text = 'Welcome ' + name + '!' + '\n' + 'Please Choose Top News or Favorites Below.';
 		
 		// hide keyboard
 		emailTxt.blur();
@@ -125,10 +116,6 @@ submitButton2.addEventListener('click', function(){
 	            'sessionId: ' + Cloud.sessionId + '\n' +
 	            'first name: ' + user.first_name + '\n' +
 	            'last name: ' + user.last_name);
-	            formView2.visible = false;
-				welcomeLabel2.visible = true;
-				name = user.first_name;
-				welcomeLabel2.text = 'Welcome ' + name  + '!'; // + '\n' + 'Please Choose Top News or Favorites Below.';
 			} else {
 				alert((e.error && e.message) || JSON.stringify(e));
 			}
@@ -138,7 +125,10 @@ submitButton2.addEventListener('click', function(){
 	// now your app is ready to access ACS network and data services
 })();
 
-		
+		formView2.visible = false;
+		welcomeLabel.visible = true;
+		name = emailTxt.value;
+		welcomeLabel.text = 'Welcome ' + name + '!' + '\n' + 'Please Choose Top News or Favorites Below.';
 		
 		// hide keyboard
 		emailTxt.blur();
@@ -157,7 +147,6 @@ createLogin.addEventListener('click', function(){
 //var user = require('user');
 
 userContainer.add(formView2);
-userContainer.add(welcomeLabel2);
 container.add(logo);
 container.add(headline);
 container.add(welcomeLabel);

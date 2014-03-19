@@ -3,7 +3,7 @@
 Ti.include('ui.js');
 // Login Function ***
 
-(function() { 
+var login = (function() { 
 	// load the Cloud Module
 	var Cloud = require('ti.cloud');
 	Cloud;
@@ -33,7 +33,7 @@ Ti.include('ui.js');
 
 // Create User Function ***
 
-(function() { 
+var createUser =(function() { 
 	// load the Cloud Module
 	var Cloud = require('ti.cloud');
 	Cloud;
@@ -64,5 +64,5 @@ Ti.include('ui.js');
 	// now your app is ready to access ACS network and data services
 })();
 
-//exports.login = login;
-//exports.create = createUser;
+exports.login = login;
+exports.create = createUser;

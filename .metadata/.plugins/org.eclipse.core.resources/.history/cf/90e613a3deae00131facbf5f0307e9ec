@@ -1,0 +1,58 @@
+
+
+
+Ti.include('form.js');
+//Ti.include('user.js');
+//var user = require('user');
+
+var container = Ti.UI.createView ({
+	height: '100%',
+	width: '100%'
+	//backgroundColor: '#000',
+	//backgroundImage: 'bg.png'
+	
+});
+var logo = Ti.UI.createImageView({
+	image: 'logo.png',
+	bottom: '75%'
+});
+var headline = Ti.UI.createLabel({
+	text: "Please Login to Begin",
+	font: {fontSize: 25, fontFamily: "Arial"},
+	color: '#fff',
+	top: '25%'
+});
+
+var name;
+var welcomeLabel = Ti.UI.createLabel({
+	font: {fontSize: 30, fontFamily: "Arial"},
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	color: '#fff',
+	visible: false
+}); 
+//var user = require('user');
+submitButton.addEventListener('click', function(){
+	if (emailTxt.value == '' || passTxt.value == ''){
+		alert('Please enter a username and password.');
+	} else{
+		login();
+
+		formView.visible = false;
+		welcomeLabel.visible = true;
+		name = emailTxt.value;
+		welcomeLabel.text = 'Welcome ' + name + '!' + '\n' + 'Please Choose Top News or Favorites Below.';
+		
+		// hide keyboard
+		emailTxt.blur();
+		passTxt.blur();
+	}
+	
+});
+
+//var user = require('user');
+
+container.add(logo);
+container.add(headline);
+container.add(welcomeLabel);
+container.add(formView);
+win1.add(container);

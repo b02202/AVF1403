@@ -1,7 +1,5 @@
-// Robert Brooks
-// AVF 1403
-// Project 3 Data Sync
-// form.js
+
+
 
 // Begin User Login Form ***
 var formView = Ti.UI.createView({
@@ -145,6 +143,9 @@ var submitButton2 = Ti.UI.createButton({
     
  
 });
+
+
+
 
 // Login
 formView.add(emailTxt);

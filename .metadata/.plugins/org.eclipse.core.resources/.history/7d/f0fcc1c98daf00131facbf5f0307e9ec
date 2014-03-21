@@ -1,7 +1,4 @@
-// Robert Brooks
-// AVF 1403
-// Project 3 Data Sync
-// user.js
+
 
 Ti.include('ui.js');
 // Login Function ***

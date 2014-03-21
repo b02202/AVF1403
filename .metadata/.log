@@ -22262,3 +22262,27 @@ java.net.UnknownHostException: studio.appcelerator.com
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:636)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1450)
+
+!ENTRY org.eclipse.osgi 2 1 2014-03-19 13:50:32.319
+!MESSAGE NLS unused message: MobileUIPlugin_DefaultProjectTemplate_Description in: com.appcelerator.titanium.ios.ui.messages
+
+!ENTRY org.eclipse.osgi 2 1 2014-03-19 13:50:32.337
+!MESSAGE NLS unused message: MobileUIPlugin_DefaultProjectTemplate_Name in: com.appcelerator.titanium.ios.ui.messages
+
+!ENTRY org.eclipse.osgi 2 1 2014-03-19 13:50:32.337
+!MESSAGE NLS unused message: MobileUIPlugin_mobileUIInitializationJobName in: com.appcelerator.titanium.ios.ui.messages
+
+!ENTRY org.eclipse.osgi 2 1 2014-03-19 13:50:32.338
+!MESSAGE NLS unused message: AdhocHandler_sdk_compatibility_title in: com.appcelerator.titanium.ios.ui.messages
+
+!ENTRY org.eclipse.osgi 2 1 2014-03-19 13:50:32.338
+!MESSAGE NLS unused message: DistributeWizard_ErrorDialogTitle in: com.appcelerator.titanium.ios.ui.messages
+
+!ENTRY org.eclipse.osgi 2 1 2014-03-19 13:50:32.338
+!MESSAGE NLS unused message: DistributeWizard_LaunchConfigurationFailed_Error in: com.appcelerator.titanium.ios.ui.messages
+
+!ENTRY org.eclipse.osgi 2 1 2014-03-19 13:50:32.339
+!MESSAGE NLS unused message: IOSConfigurationMessages_TestOnDevice_Desc in: com.appcelerator.titanium.ios.ui.messages
+
+!ENTRY org.eclipse.osgi 2 1 2014-03-19 13:50:32.339
+!MESSAGE NLS unused message: IOSConfigurationMessages_TestOnDevice_Title in: com.appcelerator.titanium.ios.ui.messages

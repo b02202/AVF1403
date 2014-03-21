@@ -1,0 +1,189 @@
+
+
+exports.gallery = function(){
+Ti.include('ui.js');
+var Cloud = require('ti.cloud');
+
+
+var storyWin = Ti.UI.createWindow({
+	title: 'Your Stories',
+	backgroundColor: '#fff',
+});
+
+var galWin = Ti.UI.createWindow({
+	title: 'Photo Gallery',
+	backgroundColor: '#fff',
+});
+
+var storyBtn = Ti.UI.createButton({
+	title: 'CREATE NEWS',
+	font: {fontSize: 25, fontFamily: "Arial"},
+	color: '#fff',
+	backgroundColor: '#b5b7b9',
+	borderColor: '#fff',
+	borderWidth: 1,
+	width: '50%',
+	height: 75,
+	bottom: 0,
+	right: 0,
+	enabled: false
+	
+});
+win1.add(storyBtn);
+
+storyBtn.addEventListener('click', function(){
+	storyWin.open();
+});
+
+var gallBtn = Ti.UI.createButton({
+	title: '+ from Photo Gallery',
+	font: {fontSize: 25, fontFamily: "Arial"},
+	color: '#fff',
+	backgroundColor: '#0099ff',
+	borderColor: '#fff',
+	borderWidth: 1,
+	width: '100%',
+	height: 60,
+	top: 20,
+	//right: '25%',
+	enabled: true
+	
+});
+
+var backButton = Ti.UI.createButton({
+	title: '<< BACK',
+	font: {fontSize: 25, fontFamily: "Arial"},
+	color: '#fff',
+	backgroundColor: '#0099ff',
+	borderColor: '#fff',
+	borderWidth: 1,
+	width: '100%',
+	height: 60,
+	bottom: 0,
+	//right: '25%',
+	enabled: true
+	
+});
+backButton.addEventListener('click', function(){
+				galWin.close();
+				storyWin.close();
+			});
+galWin.add(backButton);
+
+gallBtn.addEventListener('click', function(e) {
+	Ti.Media.openPhotoGallery({
+		allowEditing: true,
+		success: function(e){
+			var picFormView = Ti.UI.createScrollView({
+				layout: "vertical",
+				backgroundColor: "#000",
+				width: '100%',
+				top: '50%',
+				bottom: 60
+
+			});
+			var imgView = Ti.UI.createImageView({
+				image: e.media,
+				width: '50%',
+				//height: '50%',
+				top: 85,
+				bottom: '52%',
+				left: '25%'
+			});
+
+			
+			var sendBtn = Ti.UI.createButton({
+				title: "Upload to cloud",
+				color: "#fff",
+				font: {fontSize: 25, fontFamily: "Helvetica"},
+				textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+			    backgroundColor: "#0099ff",
+			    borderRadius: 20,
+			    borderColor: "#fff",
+			    height: 50,
+			    top: 20,
+			    left: 40,
+			    right: 40,
+			    enabled: true
+ 
+			});
+			picFormView.add(titleField);
+			picFormView.add(fullTxtField);
+			picFormView.add(sendBtn);
+			galWin.add(picFormView);
+			galWin.add(imgView);
+			galWin.open();
+			
+			sendBtn.addEventListener('click', function(){
+				
+				var img = imgView.toImage();
+				dataFile = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory,"story01.png");
+				if (dataFile.exists()){
+					dataFile.deleteFile();
+				} else {
+					
+					//dataFile.createFile();
+					dataFile.write(img);
+					var fileContent = dataFile.read();
+					
+					// push to ACS
+					Cloud.Photos.create({
+						photo: fileContent, //Titanium.Filesystem.getFile('photo.jpg')
+						user_id : currentUser
+						}, function (e) {
+							if (e.success) {
+							var photo = e.photos[0];
+						        alert('Success:\n' +
+						            'id: ' + photo.id + '\n' +
+						            'filename: ' + photo.filename + '\n' +
+						            'size: ' + photo.size,
+						            'updated_at: ' + photo.updated_at,
+						            'userid:' + currentUser);
+						} else {
+						        alert('Error:\n' +
+						            ((e.error && e.message) || JSON.stringify(e)));
+						    }
+						});
+					
+					//emailDialog.addAttachment(fileContent);
+					//emailDialog.subject = titleField.value;
+					//emailDialog.messageBody = fullTxtField.value + '\n' + 'Location = ' + coordText;
+					//emailDialog.open();
+				}
+				//dataFile.createFile();
+				dataFile.write(img);
+				var fileContent = dataFile.read();
+				//emailDialog.addAttachment(fileContent);
+				//emailDialog.subject = titleField.value;
+				//emailDialog.messageBody = fullTxtField.value + '\n' + 'Location = ' + coordText;
+				//emailDialog.open();
+			});
+			
+			emailDialog.addEventListener('complete', function(e){
+				alert('Your Email Has Been Sent.');
+				if(dataFile.exists()){
+					dataFile.deleteFile();
+				}
+			
+			});
+			
+			
+		},
+		error: function(error) {
+			if (error.code == Ti.Media.NO_CAMERA) {
+				alert("please run this on a device");
+			} else {
+				alert("other error: " + error.code);
+			}
+		},
+		cancel: function(e){
+			alert("Photo gallery was canceled");
+		}
+		
+	});
+});
+
+storyWin.add(gallBtn);
+//storyWin.add(picBtn);
+storyWin.add(backButton);
+};

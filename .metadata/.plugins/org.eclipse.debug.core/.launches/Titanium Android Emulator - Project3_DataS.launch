@@ -2,7 +2,7 @@
 <launchConfiguration type="com.appcelerator.titanium.mobile.ui.android.simulator.launchConfigurationType">
 <stringAttribute key="ATTR_PROJECT_NAME" value="Project3_DataS"/>
 <stringAttribute key="abi" value="armeabi"/>
-<stringAttribute key="device-id" value="AndroidTest"/>
+<stringAttribute key="device-id" value="Android"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/Project3_DataS"/>
 </listAttribute>

@@ -17,7 +17,11 @@ var win1 = Titanium.UI.createWindow({
     backgroundColor: '#000',
 	backgroundImage: 'bg.png'
 });
-// ACS Function ***
+
+if (Titanium.Network.networkType === Titanium.Network.NETWORK_NONE) {
+	 alert(' No Internet Connection. All app features will not be available. '); 
+	 } else { alert(' Connected to the interenet. All app features Available ');
+	 // ACS Function ***
 
 (function() { 
 	// load the Cloud Module
@@ -44,6 +48,8 @@ var win1 = Titanium.UI.createWindow({
 	loginUser();
 	// now your app is ready to access ACS network and data services
 })();
+
+	  }
 
 
 

@@ -1,64 +1,51 @@
+// Robert Brooks
+// AVF 1403
+// Project 4 Final App
+// app.js
+
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Titanium.UI.setBackgroundColor('#000');
+// Table for remote data
+var table1 = Ti.UI.createTableView({
+	//height: '90%',
+	top: 20,
+	bottom: 75
+});
 
-// create tab group
-var tabGroup = Titanium.UI.createTabGroup();
-
-
-//
-// create base UI tab and root window
-//
 var win1 = Titanium.UI.createWindow({  
-    title:'Tab 1',
-    backgroundColor:'#fff'
+    title:'Project 3',
+    backgroundColor: '#000',
+	backgroundImage: 'bg.png'
 });
-var tab1 = Titanium.UI.createTab({  
-    icon:'KS_nav_views.png',
-    title:'Tab 1',
-    window:win1
-});
+// ACS Function ***
 
-var label1 = Titanium.UI.createLabel({
-	color:'#999',
-	text:'I am Window 1',
-	font:{fontSize:20,fontFamily:'Helvetica Neue'},
-	textAlign:'center',
-	width:'auto'
-});
-
-win1.add(label1);
-
-//
-// create controls tab and root window
-//
-var win2 = Titanium.UI.createWindow({  
-    title:'Tab 2',
-    backgroundColor:'#fff'
-});
-var tab2 = Titanium.UI.createTab({  
-    icon:'KS_nav_ui.png',
-    title:'Tab 2',
-    window:win2
-});
-
-var label2 = Titanium.UI.createLabel({
-	color:'#999',
-	text:'I am Window 2',
-	font:{fontSize:20,fontFamily:'Helvetica Neue'},
-	textAlign:'center',
-	width:'auto'
-});
-
-win2.add(label2);
+(function() { 
+	// load the Cloud Module
+	var Cloud = require('ti.cloud');
+	// set .debug property to 'true' as we are in Development mode
+	Cloud.debug = true;
+	var loginUser = function(){
+		Cloud.Users.login({
+			login:  Ti.App.id,
+			password: 'Rwb012383'
+		}, function(e){
+			// use .info method to view login info in the Console, if successful
+			if (e.success){
+				var user = e.users[0];
+				Ti.API.info('Success!\n' + 
+					'ACS User ID: ' + user.id + '\n' + 
+					'ACS App sessionId: ' + Cloud.sessionId + '\n' + 
+					'ACS App Username: ' + user.username);
+			} else {
+				alert((e.error && e.message) || JSON.stringify(e));
+			}
+		});
+	}; // loginUser ends
+	loginUser();
+	// now your app is ready to access ACS network and data services
+})();
 
 
 
-//
-//  add tabs
-//
-tabGroup.addTab(tab1);  
-tabGroup.addTab(tab2);  
-
-
-// open tab group
-tabGroup.open();
+var ui = require('ui');
+win1.open();

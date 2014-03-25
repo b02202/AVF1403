@@ -36,65 +36,12 @@ var tableView = Titanium.UI.createTableView({
 var tableData = getRowData();
 tableView.setData(tableData);
 
-// form Container
-var editView = Ti.UI.createScrollView({
-	layout: "vertical",
-	backgroundColor: "#000",
-	width: '100%',
-	top: 20
+// add form components to edit
+editView.add(editDate);
+editView.add(editTitle);
+editView.add(saveButton);
+editView.add(cancelButton);
 
-});
-
-// Form Fields
-var fieldHeight = 40;
-var editDate = Ti.UI.createTextField({
-	  borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-	  color: '#336699',
-	  top: 10,
-	  left: 10,
-	  right: 10, 
-	  height: fieldHeight,
-	  hintText: "Date 02/25/2014"
-});
-var editTitle = Ti.UI.createTextField({
-	  borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-	  color: '#336699',
-	  top: 10,
-	  left: 10,
-	  right: 10, 
-	  height: fieldHeight,
-	  hintText: "Story Title"
-});
-var saveButton = Ti.UI.createButton({
-	title: "Submit",
-	color: "#fff",
-	font: {fontSize: 25, fontFamily: "Helvetica"},
-	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-    backgroundColor: "#0099ff",
-    borderRadius: 20,
-    borderColor: "#fff",
-    height: 50,
-    top: 20,
-    left: 40,
-    right: 40,
-    enabled: true
- 
-});
-var cancelButton = Ti.UI.createButton({
-	title: "Cancel",
-	color: "#fff",
-	font: {fontSize: 25, fontFamily: "Helvetica"},
-	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-    backgroundColor: "#0099ff",
-    borderRadius: 20,
-    borderColor: "#fff",
-    height: 50,
-    top: 20,
-    left: 40,
-    right: 40,
-    enabled: true
-   
-});
 
 // *** Begin Web Window ***
 // window for webView
@@ -173,7 +120,7 @@ var userContainer = Ti.UI.createView ({
 	
 });
 
-/*var storyBtn = Ti.UI.createButton({
+var storyBtn = Ti.UI.createButton({
 	title: 'CREATE NEWS',
 	font: {fontSize: 25, fontFamily: "Arial"},
 	color: '#fff',
@@ -186,7 +133,7 @@ var userContainer = Ti.UI.createView ({
 	right: 0,
 	enabled: false
 	
-});*/
+});
 
 var newsButton = Ti.UI.createButton({
 	title: 'TOP NEWS',
@@ -253,31 +200,6 @@ table1.addEventListener('click', function(e){
 			db.execute('INSERT INTO fav (date, title) VALUES(?,?)', favInfo.date, favInfo.title );
 			var data = getRowData();
 			tableView.setData(data);
-			
-			// Create Custom ACS Object
-			
-			Cloud.Objects.create({
-			    classname: 'favoriteNews',
-			    user_id: currentUser,
-			    fields: {
-			        title: favInfo.title,
-			        date: favInfo.date,
-			        url: favInfo.url
-			    }
-			}, function (e) {
-			    if (e.success) {
-			        var favStory = e.favoriteNews[0];
-			        alert('Success:\n' +
-			            'id: ' + favStory.id + '\n' +
-			            'title: ' + favStory.title + '\n' +
-			            'date: ' + favStory.date + '\n' +
-			            'url: ' + favStory.url + '\n' +
-			            'user id: ' + currentUser);
-			    } else {
-			        alert('Error:\n' +
-			            ((e.error && e.message) || JSON.stringify(e)));
-			    }
-});
 		
 		// success alert
 			alert('This story has been added to your favorites.');			
@@ -375,15 +297,86 @@ alert('This item has been deleted.');
 	editDialog.show();
 });
 
-// add form components to edit
-editView.add(editDate);
-editView.add(editTitle);
-editView.add(saveButton);
-editView.add(cancelButton);
 // *** End Edit ***
 
 // *** Begin Login Form ***
 // Form Layout
+var formView = Ti.UI.createView({
+	//scrollType: "vertical",
+	//backgroundColor: "#fff",
+	//borderRadius: 20,
+	//borderColor: "#fff",
+	top: '30%',
+	left: '10%',
+	right: '10%',
+	//height: 200,
+	//bottom: '50',
+	visible: true
+});
+
+// Form Fields
+var fieldHeight = 50;
+var emailTxt = Ti.UI.createTextField({
+	  borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	  color: '#fff',
+	  top: 10,
+	  left: 0,
+	  right: 0, 
+	  font: {fontSize: 15, fontFamily: "Arial"},
+	  height: fieldHeight,
+	  hintText: "USER LOGIN / EMAIL "
+});
+var passTxt = Ti.UI.createTextField({
+	  borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+	  color: '#fff',
+	  font: {fontSize: 15, fontFamily: "Arial"},
+	  top: emailTxt.top + 60,
+	  left: 0,
+	  right: 0, 
+	  height: fieldHeight,
+	  hintText: "PASSWORD  ex. Password123"
+});
+
+var createLogin = Ti.UI.createLabel({
+	text: "Create Account",
+	color: '#FFF',
+	font: {fontSize: 15, fontFamily: "Arial"},
+	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+	top: 125,
+	left: 0,
+	height: 20,
+	width: '50%'
+	
+});
+
+var forgotLogin = Ti.UI.createLabel({
+	text: "Forgot Login or Password?",
+	color: '#FFF',
+	font: {fontSize: 15, fontFamily: "Arial"},
+	textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
+	top: 125,
+	right: 0,
+	height: 20,
+	width: '50%'
+	
+});
+
+var submitButton = Ti.UI.createButton({
+	title: "Submit",
+	color: "#fff",
+	font: {fontSize: 25, fontFamily: "Helvetica"},
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+    backgroundColor: "#0099ff",
+    borderRadius: 20,
+    borderColor: "#fff",
+    height: 50,
+    top: 160,
+    left: '25%',
+    right: '25%',
+    enabled: true
+    
+ 
+});
 
 // *** Gallery ***
 var storyWin = Ti.UI.createWindow({
@@ -673,14 +666,8 @@ submitButton2.addEventListener('click', function(){
 createLogin.addEventListener('click', function(){
 	userForm.add(userContainer);
 	userForm.add(storyBtn);
-	userForm.add(favButton);
-	userForm.add(newsButton);
 	userForm.open();
-	favButton.enabled = true;
-	newsButton.enabled = true;
-	storyBtn.enabled= true;
-	favButton.backgroundColor = '#0099ff';
-	newsButton.backgroundColor = '#0099ff';
+	storyBtn.enabled=true;
 	storyBtn.backgroundColor = '#0099ff';	
 });
 
@@ -750,11 +737,11 @@ favButton.addEventListener('click', function(){
 
 
 newsWin.add(table1);
-//formView.add(emailTxt);
-//formView.add(passTxt);
-//formView.add(createLogin);
-//formView.add(forgotLogin);
-//formView.add(submitButton);
+formView.add(emailTxt);
+formView.add(passTxt);
+formView.add(createLogin);
+formView.add(forgotLogin);
+formView.add(submitButton);
 container.add(logo);
 container.add(headline);
 container.add(welcomeLabel);

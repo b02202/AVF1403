@@ -253,31 +253,6 @@ table1.addEventListener('click', function(e){
 			db.execute('INSERT INTO fav (date, title) VALUES(?,?)', favInfo.date, favInfo.title );
 			var data = getRowData();
 			tableView.setData(data);
-			
-			// Create Custom ACS Object
-			
-			Cloud.Objects.create({
-			    classname: 'favoriteNews',
-			    user_id: currentUser,
-			    fields: {
-			        title: favInfo.title,
-			        date: favInfo.date,
-			        url: favInfo.url
-			    }
-			}, function (e) {
-			    if (e.success) {
-			        var favStory = e.favoriteNews[0];
-			        alert('Success:\n' +
-			            'id: ' + favStory.id + '\n' +
-			            'title: ' + favStory.title + '\n' +
-			            'date: ' + favStory.date + '\n' +
-			            'url: ' + favStory.url + '\n' +
-			            'user id: ' + currentUser);
-			    } else {
-			        alert('Error:\n' +
-			            ((e.error && e.message) || JSON.stringify(e)));
-			    }
-});
 		
 		// success alert
 			alert('This story has been added to your favorites.');			
@@ -673,14 +648,8 @@ submitButton2.addEventListener('click', function(){
 createLogin.addEventListener('click', function(){
 	userForm.add(userContainer);
 	userForm.add(storyBtn);
-	userForm.add(favButton);
-	userForm.add(newsButton);
 	userForm.open();
-	favButton.enabled = true;
-	newsButton.enabled = true;
-	storyBtn.enabled= true;
-	favButton.backgroundColor = '#0099ff';
-	newsButton.backgroundColor = '#0099ff';
+	storyBtn.enabled=true;
 	storyBtn.backgroundColor = '#0099ff';	
 });
 

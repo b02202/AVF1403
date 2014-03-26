@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="com.appcelerator.titanium.mobile.ui.ios.installer.launchConfigurationType">
+<booleanAttribute key="ATTR_MINIFY" value="true"/>
+<stringAttribute key="ATTR_PROJECT_NAME" value="Project4_FinalApp"/>
+<stringAttribute key="ATTR_TITANIUM_DEPLOY_TYPE" value="development"/>
+<stringAttribute key="appid" value="com.fullsail.rwb.project4"/>
+<stringAttribute key="certificate" value="Robert Brooks (69CT5PE4B5)"/>
+<stringAttribute key="debug_config" value="::1395861261401:192.168.2.15"/>
+<stringAttribute key="debug_hosts" value="192.168.2.15"/>
+<stringAttribute key="device_id" value="5986321479100268c41a1cff37f38fcd782bc75e"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/Project4_FinalApp"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
+<booleanAttribute key="org.eclipse.debug.core.capture_output" value="true"/>
+<booleanAttribute key="org.eclipse.debug.ui.ATTR_LAUNCH_IN_BACKGROUND" value="true"/>
+<stringAttribute key="process_factory_id" value="com.appcelerator.titanium.ui.logLevelFilteringProcessFactory"/>
+<stringAttribute key="sdk_version" value="7.1"/>
+<stringAttribute key="uuid" value="71C2B009-F692-4538-ADC1-7BC385481D74"/>
+</launchConfiguration>

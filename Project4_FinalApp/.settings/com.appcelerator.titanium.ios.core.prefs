@@ -1,0 +1,14 @@
+eclipse.preferences.version=1
+iosLaunchConfigurationAttributes/ATTR_MINIFY=true
+iosLaunchConfigurationAttributes/ATTR_PROJECT_NAME=Project4_FinalApp
+iosLaunchConfigurationAttributes/appid=com.fullsail.rwb.project4
+iosLaunchConfigurationAttributes/certificate=Robert Brooks (69CT5PE4B5)
+iosLaunchConfigurationAttributes/keychain=
+iosLaunchConfigurationAttributes/sdk_version=7.1
+iosLaunchConfigurationAttributes/uuid=71C2B009-F692-4538-ADC1-7BC385481D74
+provisioning_profiles/development/71C2B009-F692-4538-ADC1-7BC385481D74/appid=*
+provisioning_profiles/development/71C2B009-F692-4538-ADC1-7BC385481D74/name=iOS Team Provisioning Profile\: *
+provisioning_profiles/development/71C2B009-F692-4538-ADC1-7BC385481D74/uuid=71C2B009-F692-4538-ADC1-7BC385481D74
+provisioning_profiles/development/EDF98C0F-CDCE-4A8E-9789-1E2AD6A82B0B/appid=com.fullsail.demoApp
+provisioning_profiles/development/EDF98C0F-CDCE-4A8E-9789-1E2AD6A82B0B/name=demoApp
+provisioning_profiles/development/EDF98C0F-CDCE-4A8E-9789-1E2AD6A82B0B/uuid=EDF98C0F-CDCE-4A8E-9789-1E2AD6A82B0B

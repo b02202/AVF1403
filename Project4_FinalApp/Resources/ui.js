@@ -14,11 +14,13 @@ Ti.include('database.js');
 // include Edit-Form Componenets from form.js
 Ti.include('form.js');
 
-Ti.include('camera.js');
+//Ti.include('camera.js');
 Ti.include('geo.js');
 
 // Current User Variable
 var currentUser;
+
+var favInfo;
 
 // call create / open DB function
 openDB();
@@ -173,7 +175,7 @@ var userContainer = Ti.UI.createView ({
 	
 });
 
-/*var storyBtn = Ti.UI.createButton({
+var storyBtn = Ti.UI.createButton({
 	title: 'CREATE NEWS',
 	font: {fontSize: 25, fontFamily: "Arial"},
 	color: '#fff',
@@ -186,7 +188,7 @@ var userContainer = Ti.UI.createView ({
 	right: 0,
 	enabled: false
 	
-});*/
+});
 
 var newsButton = Ti.UI.createButton({
 	title: 'TOP NEWS',
@@ -217,6 +219,21 @@ var favButton = Ti.UI.createButton({
 	enabled: false
     //disabledColor: '#b5b7b9'
 });
+var cloudSyncBtn = Ti.UI.createButton({
+	title: 'Sync with ACS',
+	font: {fontSize: 25, fontFamily: "Arial"},
+	color: '#fff',
+	backgroundColor: '#0099ff',
+	borderColor: '#fff',
+	borderWidth: 1,
+	width: '100%',
+	height: 75,
+	bottom: 85,
+	right: 0,
+	enabled: true
+    //disabledColor: '#b5b7b9'
+});
+
 
 // favorite funciton
 var favOptions = {
@@ -260,6 +277,7 @@ table1.addEventListener('click', function(e){
 			    classname: 'favoriteNews',
 			    user_id: currentUser,
 			    fields: {
+			    	book_id: 1,
 			        title: favInfo.title,
 			        date: favInfo.date,
 			        url: favInfo.url
@@ -277,7 +295,7 @@ table1.addEventListener('click', function(e){
 			        alert('Error:\n' +
 			            ((e.error && e.message) || JSON.stringify(e)));
 			    }
-});
+			});
 		
 		// success alert
 			alert('This story has been added to your favorites.');			
@@ -395,6 +413,7 @@ var galWin = Ti.UI.createWindow({
 	title: 'Photo Gallery',
 	backgroundColor: '#fff',
 });
+
 var titleField1 = Ti.UI.createTextField({
 	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
   	color: '#336699',
@@ -404,6 +423,21 @@ var titleField1 = Ti.UI.createTextField({
 	height: 40,
 	hintText: "Your Story Title."
 });
+
+var fullTxtField = Ti.UI.createTextArea({
+	  			borderWidth: 2,
+	  			borderColor: '#fff',
+	  			borderRadius: 5,
+	  			textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+	  			keyboardType: Ti.UI.KEYBOARD_ASCII,
+	  			suppressReturn: false,
+	  			color: '#336699',
+	  			top: 10,
+	  			left: 10,
+	  			right: 10, 
+	 			height: 300,
+	  			value: "Your full story goes here."
+			});
 
 
 
@@ -436,11 +470,44 @@ var backButton = Ti.UI.createButton({
 	enabled: true
 	
 });
+var photoWin = Ti.UI.createWindow({
+	title: 'Photo Gallery',
+	backgroundColor: '#fff',
+});
+var photoView = Ti.UI.createScrollView({
+				layout: "vertical",
+				backgroundColor: "#000",
+				width: '100%',
+				top: '50%',
+				bottom: 60
+
+			});
+var cloudPhotos = Ti.UI.createButton({
+	title: 'View Exsiting Photos',
+	font: {fontSize: 25, fontFamily: "Arial"},
+	color: '#fff',
+	backgroundColor: '#0099ff',
+	borderColor: '#fff',
+	borderWidth: 1,
+	width: '100%',
+	height: 60,
+	bottom: 80,
+	//right: '25%',
+	enabled: true
+	
+});
+photoWin.add(photoView);
+photoWin.add(photoView);
+
+cloudPhotos.addEventListener('click', function(){
+				photoWin.open();
+			});
 backButton.addEventListener('click', function(){
 				galWin.close();
 				storyWin.close();
 			});
 galWin.add(backButton);
+galWin.add(cloudPhotos);
 
 gallBtn.addEventListener('click', function(e) {
 	Ti.Media.openPhotoGallery({
@@ -480,7 +547,7 @@ gallBtn.addEventListener('click', function(e) {
  
 			});
 			picFormView.add(titleField1);
-			//picFormView.add(fullTxtField);
+			picFormView.add(fullTxtField);
 			picFormView.add(sendBtn);
 			galWin.add(picFormView);
 			galWin.add(imgView);
@@ -489,7 +556,7 @@ gallBtn.addEventListener('click', function(e) {
 			sendBtn.addEventListener('click', function(){
 				
 				var img = imgView.toImage();
-				dataFile = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, titleField1.value +'.png');
+				dataFile = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'photo.jpg');
 				if (dataFile.exists()){
 					dataFile.deleteFile();
 				}
@@ -498,7 +565,33 @@ gallBtn.addEventListener('click', function(e) {
 					dataFile.write(img);
 					var fileContent = dataFile.read();
 					
-					// push to ACS
+					// push to ACS Custom Object
+					
+					Cloud.Objects.create({
+					    classname: 'story',
+					    user_id: currentUser,
+					    photo: fileContent,
+					    fields: {
+					    	book_id: 1,
+					        title: titleField1.value,
+					        text: fullTxtField.value
+					        //photo: dataFile
+					    }
+					}, function (e) {
+					    if (e.success) {
+					        var saveStory = e.story[0];
+					        alert('Success:\n' +
+					            'id: ' + saveStory.id + '\n' +
+					            'title: ' + saveStory.title + '\n' +
+					            'text: ' + saveStory.date + '\n' +
+					            'photo: ' + saveStory.photo + '\n' +
+					            'user id: ' + currentUser);
+					    } else {
+					        alert('Error:\n' +
+					            ((e.error && e.message) || JSON.stringify(e)));
+					    }
+					});
+					/*//push to ACS Photo Object
 					Cloud.Photos.create({
 						photo: fileContent, //Titanium.Filesystem.getFile('photo.jpg')
 						user_id : currentUser
@@ -516,7 +609,7 @@ gallBtn.addEventListener('click', function(e) {
 						        alert('Error:\n' +
 						            ((e.error && e.message) || JSON.stringify(e)));
 						    }
-						});
+						});*/
 					
 					//emailDialog.addAttachment(fileContent);
 					//emailDialog.subject = titleField.value;
@@ -524,8 +617,8 @@ gallBtn.addEventListener('click', function(e) {
 					//emailDialog.open();
 				
 				//dataFile.createFile();
-				dataFile.write(img);
-				var fileContent = dataFile.read();
+				//dataFile.write(img);
+				//var fileContent = dataFile.read();
 				//emailDialog.addAttachment(fileContent);
 				//emailDialog.subject = titleField.value;
 				//emailDialog.messageBody = fullTxtField.value + '\n' + 'Location = ' + coordText;
@@ -555,6 +648,7 @@ gallBtn.addEventListener('click', function(e) {
 		
 	});
 	titleField1.value = "";
+	text: fullTxtField.value = "";
 });
 
 // Button Events ***
@@ -566,8 +660,8 @@ submitButton.addEventListener('click', function(){
 		favButton.backgroundColor = '#0099ff';
 		newsButton.enabled = true;
 		newsButton.backgroundColor = '#0099ff';
-		picBtn.enabled = true;
-		picBtn.backgroundColor = '#0099ff';
+		//picBtn.enabled = true;
+		//picBtn.backgroundColor = '#0099ff';
 		storyBtn.enabled = true,
 		storyBtn.backgroundColor = '#0099ff';
 		formView.visible = false;
@@ -729,13 +823,46 @@ newsClose.addEventListener('click', function(){
 	newsWin.close();
 });
 
-favClose.addEventListener('click', function(){
-	favWin.close();
+
+// *** cloud sync ***
+cloudSyncBtn.addEventListener('click', function(){
+	Cloud.Objects.query({
+    classname: 'favoriteNews',
+    page: 1,
+    per_page: 10,
+    where: {
+        book_id: 1,
+        user_id: currentUser
+    }
+    
+}, function (e) {
+    if (e.success) {
+        alert('Success:\n' +
+            e.favoriteNews.length +' stories have been saved from the cloud.');
+        for (var i = 0; i < e.favoriteNews.length; i++) {
+            var favStory = e.favoriteNews[i];
+            db.execute('INSERT INTO fav (date, title) VALUES(?,?)', favStory.date, favStory.title );
+			var data = getRowData();
+			tableView.setData(data);
+			
+            /*alert('id: ' + favStory.id + '\n' +
+                'story: ' + favStory.title + '\n' +
+                'date: ' + favStory.dater + '\n' +
+                'url: ' + favStory.url + '\n' +
+                'created_at: ' + favStory.created_at);*/
+        }
+    } else {
+        alert('Error:\n' +
+            ((e.error && e.message) || JSON.stringify(e)));
+    }
+});
 });
 //newsWin.add(label1);
 favWin.add(tableView);
 //favWin.add(label2);
 favWin.add(favClose);
+//favWin.add(favClose);
+favWin.add(cloudSyncBtn);
 newsWin.add(newsClose);
 
 newsButton.addEventListener('click', function(){
@@ -745,6 +872,13 @@ newsButton.addEventListener('click', function(){
 favButton.addEventListener('click', function(){
 	favWin.open();
 });
+favClose.addEventListener('click', function(){
+	favWin.close();
+});
+storyBtn.addEventListener('click', function(){
+	storyWin.open();
+});
+
 
 
 

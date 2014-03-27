@@ -484,7 +484,11 @@ var photoView = Ti.UI.createScrollView({
 				bottom: 60
 
 			});
-
+var geoLabel = Ti.UI.createLabel({
+	text: 'Location = ' + coordText,
+	color: '#fff',
+	bottom: 0
+});
 var cloudPhotos = Ti.UI.createButton({
 	title: 'View Exsiting Photos',
 	font: {fontSize: 25, fontFamily: "Arial"},
@@ -534,11 +538,6 @@ cloudPhotos.addEventListener('click', function(){
 					
 					var imageView = Ti.UI.createImageView({
 						image: image2
-					});
-					var geoLabel = Ti.UI.createLabel({
-						text: 'Location = ' + coordText,
-						color: '#fff',
-						bottom: 0
 					});
 					
 					//geoLabel.text = 'Location = ' + coordText;

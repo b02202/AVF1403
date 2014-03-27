@@ -478,7 +478,7 @@ var photoView = Ti.UI.createScrollView({
 				layout: "vertical",
 				backgroundColor: "#000",
 				width: '100%',
-				top: '50%',
+				//top: '50%',
 				bottom: 60
 
 			});
@@ -491,23 +491,74 @@ var cloudPhotos = Ti.UI.createButton({
 	borderWidth: 1,
 	width: '100%',
 	height: 60,
-	bottom: 80,
+	bottom: 100,
 	//right: '25%',
 	enabled: true
 	
 });
+storyWin.add(cloudPhotos);
 photoWin.add(photoView);
-photoWin.add(photoView);
+//photoWin.add(photoView);
 
 cloudPhotos.addEventListener('click', function(){
+				// add cloud photo query and display images in an image view (for loop)
+	Cloud.Photos.query({
+	    //classname: 'story',
+	    page: 1,
+	    per_page: 10,
+	    where: {
+	        //book_id: 1,
+	        user_id: currentUser
+	    }
+	    
+	}, function (e) {
+	    if (e.success) {
+	        alert('Success:\n' +
+	            e.photos.length +' stories have been saved from the cloud.');
+	       var makeViews = function(){
+	       		
+				for(var i=0, j=e.photos.length; i<j; i++){
+					var photo  = e.photos[i];
+	       			var image2 = photo.urls.original;
+					var newView = Ti.UI.createView({
+						top: 20,
+						//left: 4,
+						backgroundColor: "#000"
+						//backgroundImage: image2,
+						//width: 200,
+						//height: 200
+					});
+					
+					var imageView = Ti.UI.createImageView({
+						image: image2
+					});
+					
+					newView.add(imageView);
+		
+		//var imageView = Ti.UI.createImageView({
+			//image: dirList[i]
+		//});
+		
+		//newView.add(imageView);
+		photoView.add(newView);
+	}
+}; 
+makeViews();
+	        
+	    } else {
+	        alert('Error:\n' +
+	            ((e.error && e.message) || JSON.stringify(e)));
+	    }
+});
 				photoWin.open();
-			});
+});
 backButton.addEventListener('click', function(){
 				galWin.close();
 				storyWin.close();
-			});
+				photoWin.close();
+});
 galWin.add(backButton);
-galWin.add(cloudPhotos);
+
 
 gallBtn.addEventListener('click', function(e) {
 	Ti.Media.openPhotoGallery({
@@ -864,6 +915,7 @@ favWin.add(favClose);
 //favWin.add(favClose);
 favWin.add(cloudSyncBtn);
 newsWin.add(newsClose);
+photoWin.add(backButton);
 
 newsButton.addEventListener('click', function(){
 	newsWin.open();

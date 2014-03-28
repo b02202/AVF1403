@@ -720,7 +720,6 @@ submitButton.addEventListener('click', function(){
 		newsButton.enabled = false;
 		storyBtn.enabled = false;
 		cloudSyncBtn.enabled = false;
-		cloudSyncBtn.backgroundColor = '#b5b7b9',
 		favButton.enabled = true;
 		favButton.backgroundColor = '#0099ff';
 		formView.visible = false;
@@ -789,8 +788,8 @@ submitButton2.addEventListener('click', function(){
 		favButton.backgroundColor = '#0099ff';
 		newsButton.enabled = true;
 		newsButton.backgroundColor = '#0099ff';
-		//picBtn.enabled = true;
-		//picBtn.backgroundColor = '#0099ff';
+		picBtn.enabled = true;
+		picBtn.backgroundColor = '#0099ff';
 		storyBtn.enabled = true,
 		storyBtn.backgroundColor = '#0099ff';
 		formView.visible = false;

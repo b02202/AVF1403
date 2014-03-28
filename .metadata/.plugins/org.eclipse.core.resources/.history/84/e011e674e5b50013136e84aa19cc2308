@@ -716,22 +716,7 @@ gallBtn.addEventListener('click', function(e) {
 submitButton.addEventListener('click', function(){
 	if (emailTxt.value == '' || passTxt.value == ''){
 		alert('Please enter a username and password.');
-	} if (Titanium.Network.networkType === Titanium.Network.NETWORK_NONE) {
-		newsButton.enabled = false;
-		storyBtn.enabled = false;
-		cloudSyncBtn.enabled = false;
-		cloudSyncBtn.backgroundColor = '#b5b7b9',
-		favButton.enabled = true;
-		favButton.backgroundColor = '#0099ff';
-		formView.visible = false;
-		welcomeLabel.visible = true;
-		name = emailTxt.value;
-		emailTxt.blur();
-		passTxt.blur();
-		createLogin.removeEventListener;
-		
-		 alert(' No Internet Connection. Top News and Create News are not available. '); 
-	} else {
+	} else{
 		favButton.enabled = true;
 		favButton.backgroundColor = '#0099ff';
 		newsButton.enabled = true;
@@ -789,8 +774,8 @@ submitButton2.addEventListener('click', function(){
 		favButton.backgroundColor = '#0099ff';
 		newsButton.enabled = true;
 		newsButton.backgroundColor = '#0099ff';
-		//picBtn.enabled = true;
-		//picBtn.backgroundColor = '#0099ff';
+		picBtn.enabled = true;
+		picBtn.backgroundColor = '#0099ff';
 		storyBtn.enabled = true,
 		storyBtn.backgroundColor = '#0099ff';
 		formView.visible = false;

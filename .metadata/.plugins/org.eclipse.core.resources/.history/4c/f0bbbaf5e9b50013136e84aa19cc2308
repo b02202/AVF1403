@@ -720,7 +720,6 @@ submitButton.addEventListener('click', function(){
 		newsButton.enabled = false;
 		storyBtn.enabled = false;
 		cloudSyncBtn.enabled = false;
-		cloudSyncBtn.backgroundColor = '#b5b7b9',
 		favButton.enabled = true;
 		favButton.backgroundColor = '#0099ff';
 		formView.visible = false;
@@ -728,9 +727,8 @@ submitButton.addEventListener('click', function(){
 		name = emailTxt.value;
 		emailTxt.blur();
 		passTxt.blur();
-		createLogin.removeEventListener;
 		
-		 alert(' No Internet Connection. Top News and Create News are not available. '); 
+		 alert(' No Internet Connection. All app features will not be available. '); 
 	} else {
 		favButton.enabled = true;
 		favButton.backgroundColor = '#0099ff';
@@ -789,8 +787,8 @@ submitButton2.addEventListener('click', function(){
 		favButton.backgroundColor = '#0099ff';
 		newsButton.enabled = true;
 		newsButton.backgroundColor = '#0099ff';
-		//picBtn.enabled = true;
-		//picBtn.backgroundColor = '#0099ff';
+		picBtn.enabled = true;
+		picBtn.backgroundColor = '#0099ff';
 		storyBtn.enabled = true,
 		storyBtn.backgroundColor = '#0099ff';
 		formView.visible = false;

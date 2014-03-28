@@ -789,8 +789,8 @@ submitButton2.addEventListener('click', function(){
 		favButton.backgroundColor = '#0099ff';
 		newsButton.enabled = true;
 		newsButton.backgroundColor = '#0099ff';
-		//picBtn.enabled = true;
-		//picBtn.backgroundColor = '#0099ff';
+		picBtn.enabled = true;
+		picBtn.backgroundColor = '#0099ff';
 		storyBtn.enabled = true,
 		storyBtn.backgroundColor = '#0099ff';
 		formView.visible = false;
